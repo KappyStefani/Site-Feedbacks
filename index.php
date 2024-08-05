@@ -15,10 +15,26 @@
                     <li><a href="index.php">Início</a></li>
                     <li><a href="feedback.php">Feedback</a></li>
                 </ul>
+                
+                <?php
+                    if (!isset($_SESSION['id'])) {
+                ?>
                 <div class="auth-buttons">
                     <a href="cadastro.php" class="btn">Cadastro</a>
-                    <a href="#" class="btn">Login</a>
+                    <a href="login.php" class="btn">Login</a>
                 </div>
+
+                <?php
+                    } else
+                    {
+                ?>
+                 <a id="logout_topnav" href="logout.php">Sair</a>
+                <?php
+                    }
+                ?>
+
+
+
             </nav>
         </div>
     </header>

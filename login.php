@@ -1,3 +1,45 @@
+<?php
+if(session_start()) session_destroy();
+
+include('connection.php');
+
+if($_SERVER['REQUEST_METHOD'] == 'POST')
+{
+    $email = $_POST['email'];
+    $senha = $_POST['senha'];
+    $senha = $senha . "%gJ78#df67";
+    $senha = md5($senha);
+
+    $sql = "SELECT COUNT(id) FROM usuarios WHERE email = '$email'
+     AND senha = '$senha'";
+
+    echo($sql);
+    $result = mysqli_query($link, $sql);
+    while($tbl = mysqli_fetch_array($result)){
+        $total = $tbl[0];
+    }
+
+    if($total == 0)
+    {
+        header('Location: login.php?msg_erro=Usuário ou senha inválido.');
+        exit();
+    }
+    else
+    {
+        $sql = "SELECT id, nome, email, senha
+         FROM usuarios WHERE email = '$email' AND senha = '$senha'";
+         $result = mysqli_query($link, $sql);
+         while ($tbl = mysqli_fetch_array($result))
+         {
+            $id = $tbl[0] = $id;
+            $nome = $tbl[1] = $nome;
+            $senha = $tbl[2] = $senha;
+            header('Location: index.php');
+         }
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>

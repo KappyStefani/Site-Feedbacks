@@ -6,15 +6,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $nome = $_POST['nome'];
     $email = $_POST['email'];
     $senha = $_POST['senha'];
-    $senha = $senha . "%gJ78#df67";
+
     $confirmar = $_POST['confirma-senha']; 
     $senha = md5($senha);
 
-    if($senha = $confimar )
-    {
-        $sql = "SELECT COUNT(id) FROM usuarios
+   $senha = $senha . "%gJ78#df67";
+
+    $sql = "SELECT COUNT(id) FROM usuarios
         WHERE email = '$email'";
+    
     $result = mysqli_query($link, $sql);
+    
     while ($tbl = mysqli_fetch_array($result)) {
         $total = $tbl[0];
     }
@@ -32,13 +34,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         header("location: index.php");
     }
     
-    }
-    else
-    {
-        
-    }
-
-
 }
 ?>
 
